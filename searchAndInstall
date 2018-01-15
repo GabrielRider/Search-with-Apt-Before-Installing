@@ -1,0 +1,44 @@
+#!/bin/bash
+
+read -p "What package would you like to search for?: " srch
+echo "I am searching, I swear."
+apt search $srch | less
+read -p "Is the package that you were searching for in the results? Fully type \"yes\" or \"no.\" or type \"quit\" to quit: " res
+if [ "$res" = "quit" ]
+    then
+	echo "Good Bye"
+	exit 1
+    fi
+
+
+while [ "$res" = "no" ]
+do
+    read -p "What package would you like to search for?: " srch
+    echo "I am searching, I swear."
+    apt search $srch | less
+    read -p "Is the package that you were searching for in the results? Fully type \"yes\" or \"no.\" or type \"quit\" to quit: " res
+    if [ "$res" = "quit" ]
+    then
+	echo "Good Bye"
+	exit 1
+    fi
+    
+done
+
+read -p "Enter the name of the exact package that you would like to install." inst
+
+apt install $inst
+
+
+#This program is free software: you can redistribute it and/or modify
+#it under the terms of the GNU General Public License as published by
+#the Free Software Foundation, either version 3 of the License, or
+#(at your option) any later version.
+#
+#This program is distributed in the hope that it will be useful,
+#but WITHOUT ANY WARRANTY; without even the implied warranty of
+#MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#GNU General Public License for more details.
+#
+#You should have received a copy of the GNU General Public License
+#along with this program.  If not, see <http://www.gnu.org/licenses/>.
